@@ -3,6 +3,7 @@ package culturemedia.service.impl;
 import culturemedia.repository.VideoRepository;
 import culturemedia.repository.ViewsRepository;
 import culturemedia.service.CultureMediaService;
+import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.Video;
 import culturemedia.model.View;
 
@@ -13,8 +14,18 @@ public class CultureMediaServiceImpl implements CultureMediaService {
     private VideoRepository videoRepository;
     private ViewsRepository viewsRepository;
    
-    public List<Video> findAll() {
-        return videoRepository.findAll();
+    public CultureMediaServiceImpl(VideoRepository videoRepository, ViewsRepository viewsRepository) {
+        this.videoRepository = videoRepository;
+        this.viewsRepository = viewsRepository;
+
+    }
+
+    public List<Video> findAll() throws VideoNotFoundException {
+        List<Video> videos = videoRepository.findAll();
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException("No videos found");
+        }
+        return videos;
     }
 
     public Video save(Video video) {
