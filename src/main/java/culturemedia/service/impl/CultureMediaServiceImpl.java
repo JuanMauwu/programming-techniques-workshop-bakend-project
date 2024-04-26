@@ -28,6 +28,22 @@ public class CultureMediaServiceImpl implements CultureMediaService {
         return videos;
     }
 
+    public List<Video> findByTitle(String title) throws VideoNotFoundException {
+        List<Video> video = videoRepository.find(title);
+        if (video.isEmpty()) {
+            throw new VideoNotFoundException("No videos found with title: " + title);
+        }
+        return video;
+    }
+
+    public List<Video> findByDuration(Double fromDuration, Double toDuration) throws VideoNotFoundException {
+        List<Video> video = videoRepository.find(fromDuration, toDuration);
+        if (video.isEmpty()) {
+            throw new VideoNotFoundException("No videos found within the specified duration range");
+        }
+        return video;
+    }
+
     public Video save(Video video) {
         return videoRepository.save(video);
     }
