@@ -11,7 +11,7 @@ public class CultureMediaController {
 	private final CultureMediaService cultureMediaService;
 
 
-	public CultureMediaController(CultureMediaServiceImpl cultureMediaService) {
+	public CultureMediaController(CultureMediaService cultureMediaService) {
 		this.cultureMediaService = cultureMediaService;
 	}
 
