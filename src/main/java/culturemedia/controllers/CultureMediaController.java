@@ -4,7 +4,7 @@ import java.util.List;
 
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.Video;
-import culturemedia.service.impl.CultureMediaServiceImpl;
+import culturemedia.service.CultureMediaService;
 
 public class CultureMediaController {
 
@@ -16,10 +16,8 @@ public class CultureMediaController {
 	}
 
 
-	public List<Video> find_allVideos() throws VideoNotFoundException {
-		List<Video> videos = cultureMediaService.findAll();
-		
-		return videos;
+	public List<Video> findAllVideos() throws VideoNotFoundException {
+		return cultureMediaService.findAll();
 	}
 
 
